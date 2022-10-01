@@ -31,7 +31,7 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4">
                 <h3>Select Sauce:</h3>
-                <div>
+                <div th:each="sauce : ${sauces}">
                     <input th:field="*{sauceList}" type="checkbox"
                            th:value="${sauce}"/>
                     <span th:text="${sauce}"></span><br/>
@@ -40,7 +40,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4">
                 <h3>Select Topping:</h3>
                 <div th:each="topping : ${toppings}">
-                    <input th:field="#{toppingList}" type="checkbox"
+                    <input th:field="*{toppingList}" type="checkbox"
                            th:value="${topping}"/>
                     <span th:text="${topping}"></span><br/>
                 </div>

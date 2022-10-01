@@ -22,7 +22,7 @@ public class DesignPizzaController {
         this.pizza = pizza;
     }
 
-    @PostMapping("/design")
+    @GetMapping("/design")
     public String showDesignForm(Model model) {
 
         model.addAttribute("pizza", pizza);
