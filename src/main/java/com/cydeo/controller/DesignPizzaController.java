@@ -2,6 +2,7 @@ package com.cydeo.controller;
 
 import com.cydeo.bootstrap.DataGenerator;
 import com.cydeo.model.Pizza;
+import com.cydeo.model.PizzaOrder;
 import com.cydeo.repository.PizzaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,12 @@ public class DesignPizzaController {
 
     private final PizzaRepository pizzaRepository;
     private final Pizza pizza;
+    private final PizzaOrder pizzaOrder;
 
-    public DesignPizzaController(PizzaRepository pizzaRepository, Pizza pizza) {
+    public DesignPizzaController(PizzaRepository pizzaRepository, Pizza pizza, PizzaOrder pizzaOrder) {
         this.pizzaRepository = pizzaRepository;
         this.pizza = pizza;
+        this.pizzaOrder = pizzaOrder;
     }
 
     @GetMapping("/design")
@@ -46,7 +49,8 @@ public class DesignPizzaController {
     }
 
     @GetMapping("/order")
-    public String orderForm(){
+    public String orderForm(Model model){
+        model.addAttribute("pizzaOrder", pizzaOrder);
         return "/orderForm";
     }
 
