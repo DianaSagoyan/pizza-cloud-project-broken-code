@@ -36,20 +36,32 @@ public class DesignPizzaController {
 
         return "/design";
     }
-    @PostMapping("/current")
-    public String processPizza(@ModelAttribute("pizza") Pizza pizza) {
+//    @PostMapping("/current")
+//    public String processPizza(@ModelAttribute("pizza") Pizza pizza) {
+//
+//        pizza.setId(UUID.randomUUID());
+//        pizzaRepository.createPizza(pizza);
+//
+//        return "redirect:/orders/current?pizzaId=" + pizza.getId();
+////        return "redirect:/order";
+//    }
+
+    @PostMapping("/orders/current/{id}")
+    public String processPizza(@ModelAttribute("pizza") Pizza pizza, Model model) {
 
         pizza.setId(UUID.randomUUID());
         pizzaRepository.createPizza(pizza);
-
-        return "redirect:/orders/current?pizzaId=" + pizza.getId();
-//        return "redirect:/order";
-    }
-
-    @GetMapping("/orders/current/{id}")
-    public String orderForm(Model model, @PathVariable UUID id){
         model.addAttribute("pizzaOrder", pizzaOrder);
+
         return "/orderForm";
     }
+
+//    @GetMapping("/orders/current/{id}")
+//    public String orderForm(Model model, @PathVariable UUID id, @ModelAttribute("pizza") Pizza pizza){
+//
+//        model.addAttribute("pizzaOrder", pizzaOrder);
+//
+//        return "/orderForm";
+//    }
 
 }

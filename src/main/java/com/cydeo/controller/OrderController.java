@@ -41,7 +41,6 @@ public class OrderController {
         return "redirect:/home";
     }
 
-    //TODO
     @GetMapping
     private Pizza getPizza(UUID pizzaId) {
         // Get the pizza from repository based on it's id
