@@ -33,7 +33,7 @@ public class OrderController {
     }
 
     @PostMapping("/{pizzaId}")
-    public String processOrder(UUID pizzaId, PizzaOrder pizzaOrder) {
+    public String processOrder(@PathVariable UUID pizzaId, @ModelAttribute PizzaOrder pizzaOrder) {
 
         // Save the order
 
@@ -42,9 +42,11 @@ public class OrderController {
     }
 
     //TODO
+    @GetMapping
     private Pizza getPizza(UUID pizzaId) {
         // Get the pizza from repository based on it's id
-        return new Pizza();
+        return pizzaRepository.findById(pizzaId);
+//        return new Pizza();
     }
 
 }

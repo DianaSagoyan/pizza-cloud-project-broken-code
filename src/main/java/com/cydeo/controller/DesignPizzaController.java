@@ -26,7 +26,6 @@ public class DesignPizzaController {
         this.pizza = pizza;
         this.pizzaOrder = pizzaOrder;
     }
-
     @GetMapping("/design")
     public String showDesignForm(Model model) {
 
@@ -36,21 +35,19 @@ public class DesignPizzaController {
         model.addAttribute("toppings", DataGenerator.toppingTypeList);
 
         return "/design";
-
     }
-
     @PostMapping("/current")
-    public String processPizza(@ModelAttribute Pizza pizza) {
+    public String processPizza(@ModelAttribute("pizza") Pizza pizza) {
 
         pizza.setId(UUID.randomUUID());
         pizzaRepository.createPizza(pizza);
 
-//        return "redirect:/orders/current?pizzaId=" + pizza.getId();
-        return "redirect:/order";
+        return "redirect:/orders/current?pizzaId=" + pizza.getId();
+//        return "redirect:/order";
     }
 
-    @GetMapping("/order")
-    public String orderForm(Model model){
+    @GetMapping("/orders/current/{id}")
+    public String orderForm(Model model, @PathVariable UUID id){
         model.addAttribute("pizzaOrder", pizzaOrder);
         return "/orderForm";
     }
